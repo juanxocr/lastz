@@ -32,7 +32,10 @@
     "pacient_desc": "...",
     "offline": "HangMan",
     "offline_role": "R4 - Calculador",
-    "offline_desc": "..."
+    "offline_desc": "...",
+	"offline2": "CocoBoo",
+	"offline2_role": "R4 - Practico",
+	"offline2_desc": "..."
   },
   "en": {
     "title": "Guardians Of Dawn - Last Z Survival Shooter Alliance",
@@ -66,7 +69,10 @@
 	"pacient_desc": "...",
 	"offline": "HangMan",
 	"offline_role": "R4 - Calculator",
-	"offline_desc": "..."
+	"offline_desc": "...",
+	"offline2": "CocoBoo",
+	"offline2_role": "R4 - Practico",
+	"offline2_desc": "..."
   },
   "de": {
     "title": "Guardians Of Dawn - Last Z Survival Shooter Allianz",
@@ -100,8 +106,10 @@
 	"pacient_desc": "...",
 	"offline": "HangMan",
 	"offline_role": "R4 - Rechner",
-	"offline_desc": "..."
-
+	"offline_desc": "...",
+	"offline2": "CocoBoo",
+	"offline2_role": "R4 - Practico",
+	"offline2_desc": "..."
   },
   "fr": {
     "title": "Guardians Of Dawn - Alliance Last Z Survival Shooter",
@@ -135,7 +143,10 @@
 	"pacient_desc": "...",
 	"offline": "HangMan",
 	"offline_role": "R4 - Calculateur",
-	"offline_desc": "..."
+	"offline_desc": "...",
+	"offline2": "CocoBoo",
+	"offline2_role": "R4 - Practico",
+	"offline2_desc": "..."
   },
   "pt": {
     "title": "Guardians Of Dawn - Aliança Last Z Survival Shooter",
@@ -169,6 +180,9 @@
 	"pacient_desc": "...",
 	"offline": "HangMan",
 	"offline_role": "R4 - Calculador",
-	"offline_desc": "..."
+	"offline_desc": "...",
+	"offline2": "CocoBoo",
+	"offline2_role": "R4 - Practico",
+	"offline2_desc": "..."
   }
 }
