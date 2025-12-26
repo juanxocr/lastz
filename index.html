@@ -1,423 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title">Guardians Of Dawns</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background: linear-gradient(to bottom, #0f0f23, #1a1a3e); 
-            color: #fff; 
-        }
-        header { 
-            background: rgba(0,0,0,0.8); 
-            padding: 20px; 
-            text-align: center; 
-        }
-        h1 { 
-            margin: 0; 
-            font-size: 2.5em; 
-            text-shadow: 2px 2px 4px rgba(255,0,0,0.5); 
-        }
-        .subtitle { 
-            font-size: 1.2em; 
-            color: #ffd700; 
-        }
-        .header-logo-title {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-        }
-        .logo {
-            height: 360px;
-            width: auto;
-        }
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 20px; 
-        }
-        .intro { 
-            text-align: center; 
-            margin-bottom: 40px; 
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 20px;
-            justify-items: center;  /* ✅ CENTRA tarjetas huérfanas */
-        }
-        .card { 
-            background: rgba(255,255,255,0.1); 
-            border-radius: 10px; 
-            padding: 20px; 
-            text-align: center; 
-            transition: transform 0.3s; 
-            position: relative;
-            overflow: hidden;
-            /* Ancho fijo para mejor centrado */
-            min-width: 350px;
-            max-width: 400px;
-        }
-        .card:hover { 
-            transform: scale(1.05); 
-        }
-        .video-container, .image-container {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .video-container iframe,
-        .video-container video,
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 8px;
-            object-fit: cover;
-            object-position: top;
-        }
-        .image-container {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .image-container:hover {
-            transform: scale(1.02);
-        }
-        .avatar {
-            cursor: pointer !important;
-            transition: transform 0.2s ease;
-        }
-        .avatar:hover {
-            transform: scale(1.05);
-        }
-        .avatar { 
-            width: 80px; 
-            height: 80px; 
-            border-radius: 50%; 
-            border: 3px solid #fff; 
-            margin: 0 auto 10px;
-            position: relative;
-            z-index: 2;
-        }
-        .name { 
-            font-size: 1.4em; 
-            color: #fff; 
-            margin-bottom: 5px; 
-        }
-        .role { 
-            color: #00ff88; 
-            font-weight: bold; 
-            margin-bottom: 10px; 
-            font-size: 0.9em;
-        }
-        .desc { 
-            font-size: 0.9em; 
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-        .stats { 
-            display: flex; 
-            justify-content: space-around; 
-            margin-top: 10px; 
-        }
-        .stat { 
-            text-align: center; 
-            font-size: 0.85em;
-        }
-        .stat-value { 
-            font-size: 1.1em; 
-            font-weight: bold; 
-            color: #ff4444; 
-            display: block;
-        }
-        .stat-label {
-            color: #ccc;
-            font-size: 0.8em;
-        }
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            background: rgba(0,0,0,0.8); 
-            margin-top: 40px; 
-        }
-        .lang-selector { 
-            position: absolute; 
-            top: 20px; 
-            right: 20px; 
-            z-index: 1000;
-        }
-        .lang-btn { 
-            background: rgba(255,255,255,0.2); 
-            border: 1px solid #ffd700; 
-            color: #ffd700; 
-            padding: 6px 12px; 
-            margin: 0 3px; 
-            border-radius: 20px; 
-            cursor: pointer; 
-            font-size: 0.9em;
-        }
-        .lang-btn.active, .lang-btn:hover { 
-            background: #ffd700; 
-            color: #000; 
-        }
 
-        /* Modal para imágenes */
-        .img-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            inset: 0;
-            background-color: rgba(0,0,0,0.9);
-        }
-        .img-modal-content {
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 8px;
-            box-shadow: 0 0 50px rgba(255,215,0,0.3);
-        }
-        .img-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            text-shadow: 0 0 10px rgba(255,215,0,0.5);
-            z-index: 10000;
-        }
-        .img-close:hover {
-            color: #ffd700;
-        }
-
-        /* ✅ RESPONSIVE MEJORADO: Centrado perfecto */
-        @media (max-width: 768px) { 
-            .grid { 
-                grid-template-columns: 1fr; 
-                justify-items: center;
-            } 
-            .lang-selector { 
-                position: static; 
-                text-align: center; 
-                margin: 10px 0; 
-            }
-            .lang-selector {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 5px;
-            }
-            .video-container,
-            .image-container {
-                height: 180px;
-            }
-            .header-logo-title {
-                flex-direction: column;
-            }
-            .card {
-                min-width: 300px;
-                max-width: 350px;
-            }
-        }
-
-        /* Pantallas medianas: 2 columnas → 1 centrado */
-        @media (min-width: 769px) and (max-width: 1000px) {
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                justify-items: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="lang-selector">
-        <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
-        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
-        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
-        <button class="lang-btn" data-lang="pt">🇵🇹 PT</button>
-    </div>
-
-    <header>
-        <div class="header-logo-title">
-            <img src="gofd-logo.png" alt="Guardians Of Dawn Logo" class="logo">
-            <h1 data-translate="header_title">🛡️ Guardians Of Dawns 🛡️</h1>
-        </div>
-        <p class="subtitle" data-translate="header_subtitle">La alianza dominante...</p>
-    </header>
-    
-    <div class="container">
-        <section class="intro">
-            <h2 data-translate="about_title">🏰 Sobre Nosotros</h2>
-            <p data-translate="about_text">Guardians Of Dawns es una alianza top...</p>
-        </section>
-
-        <section>
-            <h2 data-translate="leaders_title">⚔️ Nuestros Líderes</h2>
-            <div class="grid">
-                <!-- Tus tarjetas existentes... -->
-                <!-- King Cobra -->
+                <!-- King Cobra - Vídeo -->
                 <div class="card">
                     <div class="video-container">
                         <video poster="kingcobra.png" controls preload="metadata" muted loop>
                             <source src="kingcobra.mp4" type="video/mp4">
+                            <img src="kingcobra.png" alt="KinCobra Video">
                         </video>
                     </div>
                     <img src="kingcobra.png" alt="King Cobra" class="avatar">
-                    <div class="name">King Cobra</div>
-                    <div class="role">R5 - Líder Supremo</div>
-                    <p class="desc">El jugador más poderoso...</p>
+                    <div class="name" data-translate="leader">King Cobra</div>
+                    <div class="role" data-translate="leader_role">R5 - Líder Supremo</div>
+                    <p class="desc" data-translate="leader_desc">El jugador más poderoso...</p>
                     <div class="stats">
                         <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
                         <div class="stat"><span class="stat-value">--M</span><span class="stat-label">Tropas</span></div>
                     </div>
                 </div>
 
-                <!-- ... resto de tarjetas ... -->
-            </div>
-        </section>
+                <!-- Viper - Vídeo -->
+                <div class="card">
+                    <div class="video-container">
+                        <video poster="viper.png" controls preload="metadata" muted loop>
+                            <source src="viper.mp4" type="video/mp4">
+                            <img src="viper.png" alt="Viper Video">
+                        </video>
+                    </div>
+                    <img src="viper.png" alt="Viper" class="avatar">
+                    <div class="name" data-translate="strategist">Viper</div>
+                    <div class="role" data-translate="strategist_role">R4 - Estratega</div>
+                    <p class="desc" data-translate="strategist_desc">Favorito por sus batallas...</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
 
-        <!-- Modal único -->
-        <div class="img-modal" id="imgModal">
-            <span class="img-close" id="closeModal">&times;</span>
-            <img class="img-modal-content" id="modalImg">
-        </div>
+                <!-- Jester - Vídeo -->
+                <div class="card">
+                    <div class="video-container">
+                        <video poster="jester.png" controls preload="metadata" muted loop>
+                            <source src="jester.mp4" type="video/mp4">
+                            <img src="jester.png" alt="Jester Video">
+                        </video>
+                    </div>
+                    <img src="jester.png" alt="Jester" class="avatar">
+                    <div class="name" data-translate="warlord">Jester</div>
+                    <div class="role" data-translate="warlord_role">R4 - Estratega</div>
+                    <p class="desc" data-translate="warlord_desc">Favorito por sus batallas...</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
 
-        <section class="intro">
-            <h2 data-translate="heroes_title">🔍 Héroes Clave</h2>
-            <p data-translate="heroes_text">Usamos facciones como Wings of Dawn...</p>
-            <ul>
-                <li data-translate="heroes_list.0">Katrina: DPS principal...</li>
-                <li data-translate="heroes_list.1">Sophia: Soporte...</li>
-                <li data-translate="heroes_list.2">Fiona: Boost...</li>
-            </ul>
-        </section>
-    </div>
+                <!-- Slash - Vídeo -->
+                <div class="card">
+                    <div class="video-container">
+                        <video poster="slash.png" controls preload="metadata" muted loop>
+                            <source src="slash.mp4" type="video/mp4">
+                            <img src="slash.png" alt="Slash Video">
+                        </video>
+                    </div>
+                    <img src="slash.png" alt="Slash" class="avatar">
+                    <div class="name" data-translate="smarter">Slaag</div>
+                    <div class="role" data-translate="smarter_role">R4 - Recruiter</div>
+                    <p class="desc" data-translate="smarter_desc">Reclutador principal...</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
 
-    <footer>
-        <p data-translate="footer_text">¡Únete a Guardians Of Dawns!...</p>
-    </footer>
+                <!-- HangMan - Imagen -->
+                <div class="card">
+                    <div class="image-container">
+                        <img src="hangman.png" alt="HangMan Preview">
+                    </div>
+                    <img src="hangman.png" alt="HangMan" class="avatar">
+                    <div class="name" data-translate="offline">HangMan</div>
+                    <div class="role" data-translate="offline_role">R4 - Off Line</div>
+                    <p class="desc" data-translate="offline_desc">Off Line</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
 
-    <script>
-        let currentLang = 'es';
-        let translations = {};
+                <!-- CocoBoo - Imagen -->
+                <div class="card">
+                    <div class="image-container">
+                        <img src="hagman.png" alt="CocoBoo Preview">
+                    </div>
+                    <img src="hagman.png" alt="CocoBoo" class="avatar">
+                    <div class="name" data-translate="offline2">CocoBoo</div>
+                    <div class="role" data-translate="offline2_role">R4 - Off Line</div>
+                    <p class="desc" data-translate="offline2_desc">Off Line</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
 
-        // Modal funcionalidad (igual que antes)
-        const modal = document.getElementById('imgModal');
-        const modalImg = document.getElementById('modalImg');
-        const closeBtn = document.getElementById('closeModal');
-
-        function openModal(imgSrc) {
-            modalImg.src = imgSrc;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.avatar').forEach(avatar => {
-                avatar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openModal(avatar.src);
-                });
-            });
-
-            document.querySelectorAll('.image-container').forEach(container => {
-                container.addEventListener('click', (e) => {
-                    if (!e.target.closest('.avatar')) {
-                        openModal(container.querySelector('img').src);
-                    }
-                });
-            });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                closeModal();
-            }
-        });
-
-        // Resto del código multilingüe igual...
-        function detectLanguage() {
-            const lang = navigator.language || navigator.userLanguage;
-            if (lang.startsWith('es')) return 'es';
-            if (lang.startsWith('en')) return 'en';
-            if (lang.startsWith('de')) return 'de';
-            if (lang.startsWith('fr')) return 'fr';
-            if (lang.startsWith('pt')) return 'pt';
-            return 'es';
-        }
-
-        async function loadTranslations(lang) {
-            try {
-                const response = await fetch('languages.json');
-                translations = await response.json();
-                currentLang = lang;
-                updatePage();
-                updateButtons();
-            } catch (error) {
-                console.error('Error loading languages:', error);
-            }
-        }
-
-        function updatePage() {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang] && translations[currentLang][key]) {
-                    if (key.includes('heroes_list.')) {
-                        const index = key.split('.')[1];
-                        el.textContent = translations[currentLang].heroes_list[index];
-                    } else {
-                        el.textContent = translations[currentLang][key];
-                    }
-                }
-            });
-            document.documentElement.lang = currentLang;
-            document.title = translations[currentLang]?.title || 'Guardians Of Dawns';
-        }
-
-        function updateButtons() {
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === currentLang);
-            });
-        }
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const newLang = btn.dataset.lang;
-                if (newLang !== currentLang) {
-                    loadTranslations(newLang);
-                }
-            });
-        });
-
-        window.addEventListener('load', () => {
-            const defaultLang = detectLanguage();
-            loadTranslations(defaultLang);
-        });
-    </script>
-</body>
-</html>
+                <!-- Red Warden - Vídeo ✅ AHORA AVATAR CLICABLE -->
+                <div class="card">
+                    <div class="video-container">
+                        <video poster="red.png" controls preload="metadata" muted loop>
+                            <source src="redwarden.mp4" type="video/mp4">
+                            <img src="red.png" alt="Red Warden Video">
+                        </video>
+                    </div>
+                    <img src="red.png" alt="Red Warden" class="avatar">
+                    <div class="name" data-translate="pacient">Red Warden</div>
+                    <div class="role" data-translate="pacient_role">R4 - Warlord</div>
+                    <p class="desc" data-translate="pacient_desc">Coordinador de batallas...</p>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
+                        <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
+                    </div>
+                </div>
