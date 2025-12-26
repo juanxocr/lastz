@@ -87,17 +87,13 @@
         .image-container:hover {
             transform: scale(1.02);
         }
-        /* ✅ NUEVO: Avatar clicable SOLO en image-container */
-        .image-container .avatar {
+        /* ✅ CAMBIADO: TODOS los avatares ahora son clicables */
+        .avatar {
             cursor: pointer !important;
             transition: transform 0.2s ease;
         }
-        .image-container .avatar:hover {
+        .avatar:hover {
             transform: scale(1.05);
-        }
-        /* Videos mantienen avatar normal (no clicable) */
-        .video-container .avatar {
-            cursor: default;
         }
         .avatar { 
             width: 80px; 
@@ -328,9 +324,9 @@
                     </div>
                 </div>
 
-                <!-- HangMan - Imagen tamaño video + avatar debajo ✅ CLICABLE -->
+                <!-- HangMan - Imagen -->
                 <div class="card">
-                    <div class="image-container" data-img-src="hangman.png">
+                    <div class="image-container">
                         <img src="hangman.png" alt="HangMan Preview">
                     </div>
                     <img src="hangman.png" alt="HangMan" class="avatar">
@@ -343,9 +339,9 @@
                     </div>
                 </div>
 
-                <!-- CocoBoo - Imagen tamaño video + avatar debajo ✅ CLICABLE -->
+                <!-- CocoBoo - Imagen -->
                 <div class="card">
-                    <div class="image-container" data-img-src="hagman.png">
+                    <div class="image-container">
                         <img src="hagman.png" alt="CocoBoo Preview">
                     </div>
                     <img src="hagman.png" alt="CocoBoo" class="avatar">
@@ -358,7 +354,7 @@
                     </div>
                 </div>
 
-                <!-- Red Warden - Vídeo -->
+                <!-- Red Warden - Vídeo ✅ AHORA AVATAR CLICABLE -->
                 <div class="card">
                     <div class="video-container">
                         <video poster="red.png" controls preload="metadata" muted loop>
@@ -378,7 +374,7 @@
             </div>
         </section>
 
-        <!-- Modal único para todas las imágenes -->
+        <!-- Modal único para TODOS los avatares -->
         <div class="img-modal" id="imgModal">
             <span class="img-close" id="closeModal">&times;</span>
             <img class="img-modal-content" id="modalImg">
@@ -403,7 +399,7 @@
         let currentLang = 'es';
         let translations = {};
 
-        // ✅ MEJORADO: Modal universal para TODAS las imágenes y avatares
+        // ✅ UNIVERSAL: Modal para TODOS los avatares (videos + imágenes)
         const modal = document.getElementById('imgModal');
         const modalImg = document.getElementById('modalImg');
         const closeBtn = document.getElementById('closeModal');
@@ -425,23 +421,23 @@
             if (e.target === modal) closeModal();
         });
 
-        // ✅ NUEVO: Clic en avatares de IMÁGENES (no videos)
+        // ✅ SUPERSIMPLE: Clic en CUALQUIER avatar → abre SU imagen
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Clic en image-container (grande)
-            document.querySelectorAll('.image-container').forEach(container => {
-                container.addEventListener('click', () => {
-                    const imgSrc = container.dataset.imgSrc || container.querySelector('img').src;
+            document.querySelectorAll('.avatar').forEach(avatar => {
+                avatar.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const imgSrc = avatar.src;  // 🎯 Usa la misma src del avatar
                     openModal(imgSrc);
                 });
             });
 
-            // 2. Clic en avatar de image-container (pequeño) ✅ NUEVA FUNCIONALIDAD
-            document.querySelectorAll('.image-container .avatar').forEach(avatar => {
-                avatar.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const container = avatar.closest('.image-container');
-                    const imgSrc = container.dataset.imgSrc || container.querySelector('img').src;
-                    openModal(imgSrc);
+            // Bonus: Clic en image-container también funciona
+            document.querySelectorAll('.image-container').forEach(container => {
+                container.addEventListener('click', (e) => {
+                    if (!e.target.closest('.avatar')) {  // No duplicar si clic en avatar
+                        const imgSrc = container.querySelector('img').src;
+                        openModal(imgSrc);
+                    }
                 });
             });
         });
