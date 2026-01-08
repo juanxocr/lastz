@@ -1,0 +1,220 @@
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background: linear-gradient(to bottom, #0f0f23, #1a1a3e); 
+    color: #fff; 
+}
+header { 
+    background: rgba(0,0,0,0.8); 
+    padding: 20px; 
+    text-align: center; 
+}
+h1 { 
+    margin: 0; 
+    font-size: 2.5em; 
+    text-shadow: 2px 2px 4px rgba(255,0,0,0.5); 
+}
+.subtitle { 
+    font-size: 1.2em; 
+    color: #ffd700; 
+}
+.header-logo-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+.logo {
+    height: 360px;
+    width: auto;
+}
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+.intro { 
+    text-align: center; 
+    margin-bottom: 40px; 
+}
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 20px; 
+}
+.card { 
+    background: rgba(255,255,255,0.1); 
+    border-radius: 10px; 
+    padding: 20px; 
+    text-align: center; 
+    transition: transform 0.3s; 
+    position: relative;
+    overflow: hidden;
+}
+.card:hover { 
+    transform: scale(1.05); 
+}
+.video-container, .image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.video-container iframe,
+.video-container video,
+.image-container img {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: top;
+}
+.image-container {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.image-container:hover {
+    transform: scale(1.02);
+}
+
+/* Avatares clicables */
+.avatar {
+    cursor: pointer !important;
+    transition: transform 0.2s ease;
+}
+.avatar:hover {
+    transform: scale(1.05);
+}
+.avatar { 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    border: 3px solid #fff; 
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 2;
+}
+.name { 
+    font-size: 1.4em; 
+    color: #fff; 
+    margin-bottom: 5px; 
+}
+.role { 
+    color: #00ff88; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    font-size: 0.9em;
+}
+.desc { 
+    font-size: 0.9em; 
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+.stats { 
+    display: flex; 
+    justify-content: space-around; 
+    margin-top: 10px; 
+}
+.stat { 
+    text-align: center; 
+    font-size: 0.85em;
+}
+.stat-value { 
+    font-size: 1.1em; 
+    font-weight: bold; 
+    color: #ff4444; 
+    display: block;
+}
+.stat-label {
+    color: #ccc;
+    font-size: 0.8em;
+}
+footer { 
+    text-align: center; 
+    padding: 20px; 
+    background: rgba(0,0,0,0.8); 
+    margin-top: 40px; 
+}
+.lang-selector { 
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000;
+}
+.lang-btn { 
+    background: rgba(255,255,255,0.2); 
+    border: 1px solid #ffd700; 
+    color: #ffd700; 
+    padding: 6px 12px; 
+    margin: 0 3px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    font-size: 0.9em;
+}
+.lang-btn.active, .lang-btn:hover { 
+    background: #ffd700; 
+    color: #000; 
+}
+
+/* Modal para imágenes */
+.img-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(0,0,0,0.9);
+}
+.img-modal-content {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(255,215,0,0.3);
+}
+.img-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+    z-index: 10000;
+}
+.img-close:hover {
+    color: #ffd700;
+}
+
+@media (max-width: 768px) { 
+    .grid { 
+        grid-template-columns: 1fr; 
+    } 
+    .lang-selector { 
+        position: static; 
+        text-align: center; 
+        margin: 10px 0; 
+    }
+    .lang-selector {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .video-container,
+    .image-container {
+        height: 180px;
+    }
+    .header-logo-title {
+        flex-direction: column;
+    }
+}
