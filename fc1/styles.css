@@ -139,12 +139,19 @@ footer {
     background: rgba(0,0,0,0.8); 
     margin-top: 40px; 
 }
+
+/* Barra de idioma + upload */
 .lang-selector { 
     position: absolute; 
     top: 20px; 
     right: 20px; 
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
 }
+
 .lang-btn { 
     background: rgba(255,255,255,0.2); 
     border: 1px solid #ffd700; 
@@ -155,7 +162,18 @@ footer {
     cursor: pointer; 
     font-size: 0.9em;
 }
-.lang-btn.active, .lang-btn:hover { 
+
+/* Misma apariencia para el botón de upload (es un <a>) */
+.upload-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estado activo / hover igual que los idiomas */
+.lang-btn.active,
+.lang-btn:hover { 
     background: #ffd700; 
     color: #000; 
 }
@@ -203,12 +221,7 @@ footer {
         position: static; 
         text-align: center; 
         margin: 10px 0; 
-    }
-    .lang-selector {
-        display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 5px;
     }
     .video-container,
     .image-container {
