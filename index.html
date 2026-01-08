@@ -9,46 +9,59 @@
       margin: 0;
       height: 100%;
       background: #000;
-    }
-    .wrap {
-      height: 100%;
-      display: grid;
-      place-items: center;
+      overflow: hidden;
     }
     video {
-      max-width: 100vw;
-      max-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
       background: #000;
-      outline: none;
+      display: block;
     }
+
+    /* Intento extra de ocultar controles en navegadores WebKit */
+    video::-webkit-media-controls { display: none !important; }
+    video::-webkit-media-controls-enclosure { display: none !important; }
   </style>
 </head>
 
-<body oncontextmenu="return false;">
-  <div class="wrap">
-    <video
-      id="v"
-      src="lastz.mp4"
-      playsinline
-      preload="auto"
-      controls
-      controlslist="nodownload noremoteplayback"
-      disablepictureinpicture
-      oncontextmenu="return false;"
-    ></video>
-  </div>
+<body>
+  <!--<video
+    id="v"
+    src="video.mp4"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    controlslist="nodownload noremoteplayback"
+    disablepictureinpicture
+  ></video>-->
+  <video id="v" autoplay loop muted playsinline>
+    <source src="assets/videos/aliance.mp4" type="video/mp4">
+    <img src="assets/images/aliance.gif" alt="Guardians Of Dawn Logo">
+</video>
 
   <script>
     const v = document.getElementById('v');
 
-    // Bloquea menú contextual en toda la página (disuasorio).
-    document.addEventListener('contextmenu', (e) => e.preventDefault()); // [web:19]
+    // Quitar controles (por si el navegador los “inyecta” o se añadieron por error).
+    v.controls = false; // [web:26][web:32]
 
-    // Asegura que al terminar se quede en el último frame.
+    // Bloquear clic derecho (disuasorio).
+    document.addEventListener('contextmenu', (e) => e.preventDefault()); // [web:19][web:16]
+    v.addEventListener('contextmenu', (e) => e.preventDefault()); // [web:16]
+
+    // Quedarse en el último frame al terminar.
     v.addEventListener('ended', () => {
       v.pause();
       try { v.currentTime = v.duration; } catch (_) {}
     }); // [web:11]
+
+    // Algunos navegadores bloquean autoplay con sonido: por eso va muted.
+    // Reintento de play por si el primer autoplay falla por timing.
+    window.addEventListener('load', async () => {
+      try { await v.play(); } catch (_) {}
+    }); // [web:40][web:37]
   </script>
 </body>
 </html>

@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="title">Guardians Of Dawn</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Ruta actualizada al CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Barra superior: botón upload + idiomas -->
     <div class="lang-selector">
-        <!-- OPCIÓN 1: Botón Upload abre NUEVA PESTAÑA (target="_blank") -->
+        <!-- Opción 1: nueva pestaña -->
         <a href="https://mega.nz/filerequest/qBnfqTkXE3c"
            target="_blank"
            class="lang-btn upload-btn"
            aria-label="Subir archivos a la alianza">
-            ⬆ 
+            ⬆
         </a>
-
-        <!-- Botones de idioma -->
         <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
         <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
         <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
@@ -27,12 +25,11 @@
 
     <header>
         <div class="header-logo-title">
-            <!-- Vídeo en bucle con imagen de respaldo (GIF) -->
-            <video class="logo" autoplay loop muted playsinline poster="aliance.gif">
-                <source src="aliance.mp4" type="video/mp4">
-                <img src="aliance.gif" alt="Guardians Of Dawn Logo">
+            <!-- Rutas actualizadas a assets -->
+            <video class="logo" autoplay loop muted playsinline poster="assets/images/aliance.gif">
+                <source src="assets/videos/aliance.mp4" type="video/mp4">
+                <img src="assets/images/aliance.gif" alt="Guardians Of Dawn Logo">
             </video>
-
             <h1 data-translate="header_title">🛡️ Guardians Of Dawn 🛡️</h1>
         </div>
         <p class="subtitle" data-translate="header_subtitle">La alianza dominante...</p>
@@ -51,12 +48,12 @@
                 <!-- King Cobra -->
                 <div class="card">
                     <div class="video-container">
-                        <video poster="kingcobra.png" controls preload="metadata" muted loop>
-                            <source src="kingcobra.mp4" type="video/mp4">
-                            <img src="kingcobra.png" alt="KinCobra Video">
+                        <video poster="assets/images/kingcobra.png" controls preload="metadata" muted loop>
+                            <source src="assets/videos/kingcobra.mp4" type="video/mp4">
+                            <img src="assets/images/kingcobra.png" alt="King Cobra Video">
                         </video>
                     </div>
-                    <img src="kingcobra.png" alt="King Cobra" class="avatar">
+                    <img src="assets/images/kingcobra.png" alt="King Cobra" class="avatar">
                     <div class="name" data-translate="leader">King Cobra</div>
                     <div class="role" data-translate="leader_role">R5 - Líder Supremo</div>
                     <p class="desc" data-translate="leader_desc">El jugador más poderoso...</p>
@@ -69,12 +66,12 @@
                 <!-- Viper -->
                 <div class="card">
                     <div class="video-container">
-                        <video poster="viper.png" controls preload="metadata" muted loop>
-                            <source src="viper.mp4" type="video/mp4">
-                            <img src="viper.png" alt="Viper Video">
+                        <video poster="assets/images/viper.png" controls preload="metadata" muted loop>
+                            <source src="assets/videos/viper.mp4" type="video/mp4">
+                            <img src="assets/images/viper.png" alt="Viper Video">
                         </video>
                     </div>
-                    <img src="viper.png" alt="Viper" class="avatar">
+                    <img src="assets/images/viper.png" alt="Viper" class="avatar">
                     <div class="name" data-translate="strategist">Viper</div>
                     <div class="role" data-translate="strategist_role">R4 - Estratega</div>
                     <p class="desc" data-translate="strategist_desc">Favorito por sus batallas...</p>
@@ -87,12 +84,12 @@
                 <!-- Jester -->
                 <div class="card">
                     <div class="video-container">
-                        <video poster="jester.png" controls preload="metadata" muted loop>
-                            <source src="jester.mp4" type="video/mp4">
-                            <img src="jester.png" alt="Jester Video">
+                        <video poster="assets/images/jester.png" controls preload="metadata" muted loop>
+                            <source src="assets/videos/jester.mp4" type="video/mp4">
+                            <img src="assets/images/jester.png" alt="Jester Video">
                         </video>
                     </div>
-                    <img src="jester.png" alt="Jester" class="avatar">
+                    <img src="assets/images/jester.png" alt="Jester" class="avatar">
                     <div class="name" data-translate="warlord">Jester</div>
                     <div class="role" data-translate="warlord_role">R4 - Estratega</div>
                     <p class="desc" data-translate="warlord_desc">Favorito por sus batallas...</p>
@@ -105,12 +102,12 @@
                 <!-- Slash -->
                 <div class="card">
                     <div class="video-container">
-                        <video poster="slash.png" controls preload="metadata" muted loop>
-                            <source src="slash.mp4" type="video/mp4">
-                            <img src="slash.png" alt="Slash Video">
+                        <video poster="assets/images/slash.png" controls preload="metadata" muted loop>
+                            <source src="assets/videos/slash.mp4" type="video/mp4">
+                            <img src="assets/images/slash.png" alt="Slash Video">
                         </video>
                     </div>
-                    <img src="slash.png" alt="Slash" class="avatar">
+                    <img src="assets/images/slash.png" alt="Slash" class="avatar">
                     <div class="name" data-translate="smarter">Slash</div>
                     <div class="role" data-translate="smarter_role">R4 - Recruiter</div>
                     <p class="desc" data-translate="smarter_desc">Reclutador principal...</p>
@@ -120,12 +117,12 @@
                     </div>
                 </div>
 
-                <!-- HangMan -->
+                <!-- HangMan (Solo imagen) -->
                 <div class="card">
                     <div class="image-container">
-                        <img src="hangman.png" alt="HangMan Preview">
+                        <img src="assets/images/hangman.png" alt="HangMan Preview">
                     </div>
-                    <img src="hangman.png" alt="HangMan" class="avatar">
+                    <img src="assets/images/hangman.png" alt="HangMan" class="avatar">
                     <div class="name" data-translate="offline">HangMan</div>
                     <div class="role" data-translate="offline_role">R4 - Off Line</div>
                     <p class="desc" data-translate="offline_desc">Off Line</p>
@@ -135,12 +132,12 @@
                     </div>
                 </div>
 
-                <!-- CocoBoo -->
+                <!-- CocoBoo (Solo imagen) -->
                 <div class="card">
                     <div class="image-container">
-                        <img src="hagman.png" alt="CocoBoo Preview">
+                        <img src="assets/images/hagman.png" alt="CocoBoo Preview">
                     </div>
-                    <img src="hagman.png" alt="CocoBoo" class="avatar">
+                    <img src="assets/images/hagman.png" alt="CocoBoo" class="avatar">
                     <div class="name" data-translate="offline2">CocoBoo</div>
                     <div class="role" data-translate="offline2_role">R4 - Off Line</div>
                     <p class="desc" data-translate="offline2_desc">Off Line</p>
@@ -153,12 +150,12 @@
                 <!-- Red Warden -->
                 <div class="card">
                     <div class="video-container">
-                        <video poster="red.png" controls preload="metadata" muted loop>
-                            <source src="redwarden.mp4" type="video/mp4">
-                            <img src="red.png" alt="Red Warden Video">
+                        <video poster="assets/images/red.png" controls preload="metadata" muted loop>
+                            <source src="assets/videos/redwarden.mp4" type="video/mp4">
+                            <img src="assets/images/red.png" alt="Red Warden Video">
                         </video>
                     </div>
-                    <img src="red.png" alt="Red Warden" class="avatar">
+                    <img src="assets/images/red.png" alt="Red Warden" class="avatar">
                     <div class="name" data-translate="pacient">Red Warden</div>
                     <div class="role" data-translate="pacient_role">R4 - Warlord</div>
                     <p class="desc" data-translate="pacient_desc">Coordinador de batallas...</p>
@@ -170,7 +167,7 @@
             </div>
         </section>
 
-        <!-- Modal único para imágenes (avatares) -->
+        <!-- Modal único para avatares -->
         <div class="img-modal" id="imgModal">
             <span class="img-close" id="closeModal">&times;</span>
             <img class="img-modal-content" id="modalImg">
@@ -191,6 +188,7 @@
         <p data-translate="footer_text">¡Únete a Guardians Of Dawns!...</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Ruta actualizada al JS -->
+    <script src="js/script.js"></script>
 </body>
 </html>
