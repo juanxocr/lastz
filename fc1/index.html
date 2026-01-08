@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Barra superior: botón upload + idiomas -->
     <div class="lang-selector">
+        <!-- Botón de subir archivos (misma ruta que el antiguo iframe) -->
+        <a href="https://mega.nz/filerequest#!qBnfqTkXE3c!l!es"
+           target="_blank"
+           class="lang-btn upload-btn"
+           aria-label="Subir archivos a la alianza">
+            ⬆ Upload
+        </a>
+
+        <!-- Botones de idioma -->
         <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
         <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
         <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
@@ -17,29 +27,14 @@
 
     <header>
         <div class="header-logo-title">
+            <!-- Vídeo + fallback GIF -->
             <video class="logo" autoplay loop muted playsinline poster="aliance.gif">
                 <source src="aliance.mp4" type="video/mp4">
-                <!-- Fallback si no hay soporte de video -->
                 <img src="aliance.gif" alt="Guardians Of Dawn Logo">
             </video>
-    
+
             <h1 data-translate="header_title">🛡️ Guardians Of Dawns 🛡️</h1>
-    
-            <!-- Botón / icono de upload en MEGA -->
-            <a href="https://mega.nz/filerequest#!qBnfqTkXE3c!l!es" target="_blank" class="upload-btn" aria-label="Subir archivos a la alianza">
-                <!-- Opción 1: usar una imagen como icono -->
-                <!-- <img src="upload-icon.png" alt="Subir archivo"> -->
-    
-                <!-- Opción 2: icono SVG sencillo -->
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="11" stroke="#ffd700" stroke-width="2" />
-                    <path d="M12 6 L12 16" stroke="#ffd700" stroke-width="2" stroke-linecap="round" />
-                    <path d="M8 10 L12 6 L16 10" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <rect x="8" y="16" width="8" height="2" fill="#ffd700" />
-                </svg>
-            </a>
         </div>
-    
         <p class="subtitle" data-translate="header_subtitle">La alianza dominante...</p>
     </header>
     
@@ -48,10 +43,10 @@
             <h2 data-translate="about_title">🏰 Sobre Nosotros</h2>
             <p data-translate="about_text">Guardians Of Dawns es una alianza top...</p>
         </section>
-
         <section>
             <h2 data-translate="leaders_title">⚔️ Nuestros Líderes</h2>
             <div class="grid">
+                
                 <!-- King Cobra - Vídeo -->
                 <div class="card">
                     <div class="video-container">
