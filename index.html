@@ -1,5 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Video</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+    }
+    .wrap {
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+    video {
+      max-width: 100vw;
+      max-height: 100vh;
+      background: #000;
+      outline: none;
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div class="wrap">
+    <video
+      id="v"
+      src="lastz.mp4"
+      playsinline
+      preload="auto"
+      controls
+      controlslist="nodownload noremoteplayback"
+      disablepictureinpicture
+      oncontextmenu="return false;"
+    ></video>
+  </div>
+
+  <script>
+    const v = document.getElementById('v');
+
+    // Bloquea menú contextual en toda la página (disuasorio).
+    document.addEventListener('contextmenu', (e) => e.preventDefault()); // [web:19]
+
+    // Asegura que al terminar se quede en el último frame.
+    v.addEventListener('ended', () => {
+      v.pause();
+      try { v.currentTime = v.duration; } catch (_) {}
+    }); // [web:11]
+  </script>
 </body>
 </html>
