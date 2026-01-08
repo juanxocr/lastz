@@ -140,7 +140,7 @@ footer {
     margin-top: 40px; 
 }
 
-/* Barra de idioma + upload */
+/* Barra superior: idiomas + upload */
 .lang-selector { 
     position: absolute; 
     top: 20px; 
@@ -163,7 +163,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* Misma apariencia para el botón de upload (es un <a>) */
+/* Botón Upload: hereda estilo base pero sin efecto hover amarillo */
 .upload-btn {
     text-decoration: none;
     display: inline-flex;
@@ -171,14 +171,19 @@ footer {
     justify-content: center;
 }
 
-/* Hover / activo solo para idiomas (no upload) */
+/* Hover/Active SOLO para idiomas (excluye upload) */
 .lang-btn.active,
 .lang-btn:not(.upload-btn):hover { 
     background: #ffd700; 
     color: #000; 
 }
 
-/* Modal para imágenes (avatares) */
+/* Hover opcional suave para upload */
+.upload-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Modal de imágenes (Avatares) */
 .img-modal {
     display: none;
     position: fixed;
@@ -210,55 +215,6 @@ footer {
     z-index: 10000;
 }
 .img-close:hover {
-    color: #ffd700;
-}
-
-/* Modal upload con iframe */
-.upload-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-}
-
-.upload-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-}
-
-.upload-modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    height: 80vh;
-    background: #111;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-}
-
-.upload-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.upload-modal-close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 26px;
-    cursor: pointer;
-    z-index: 10;
-}
-.upload-modal-close:hover {
     color: #ffd700;
 }
 

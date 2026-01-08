@@ -1,92 +1,77 @@
 let currentLang = 'es';
 let translations = {};
 
-// Modal para TODOS los avatares (videos + imágenes)
+// --- Lógica del Modal para AVATARES ---
 const modal = document.getElementById('imgModal');
 const modalImg = document.getElementById('modalImg');
 const closeBtn = document.getElementById('closeModal');
 
 function openModal(imgSrc) {
-    modalImg.src = imgSrc;
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    if (modalImg) modalImg.src = imgSrc;
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
-// Cerrar modal de avatares
-if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-}
+if (closeBtn) closeBtn.addEventListener('click', closeModal);
 if (modal) {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
 }
 
-// Avatares clicables + image-container
+// --- Eventos al cargar ---
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Clic en avatares abre modal de imagen
     document.querySelectorAll('.avatar').forEach(avatar => {
         avatar.addEventListener('click', (e) => {
             e.stopPropagation();
-            const imgSrc = avatar.src;
-            openModal(imgSrc);
+            openModal(avatar.src);
         });
     });
 
+    // 2. Clic en imagen de contenedor (si la hay)
     document.querySelectorAll('.image-container').forEach(container => {
         container.addEventListener('click', (e) => {
             if (!e.target.closest('.avatar')) {
-                const imgSrc = container.querySelector('img').src;
-                openModal(imgSrc);
+                const img = container.querySelector('img');
+                if (img) openModal(img.src);
             }
         });
     });
 
-    // Modal de upload (MEGA)
+    // 3. Botón UPLOAD: Abre POPUP en lugar de iframe bloqueado
     const uploadBtn = document.getElementById('uploadBtn');
-    const uploadModal = document.getElementById('uploadModal');
-    const uploadBackdrop = document.getElementById('uploadBackdrop');
-    const closeUploadModal = document.getElementById('closeUploadModal');
-
-    if (uploadBtn && uploadModal) {
+    if (uploadBtn) {
         uploadBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            uploadModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            e.preventDefault(); // Evita navegación estándar
+            // Abre una ventana flotante (popup)
+            window.open(
+                'https://mega.nz/filerequest#!qBnfqTkXE3c!l!es', 
+                'megaUploadWindow', 
+                'width=900,height=700,resizable=yes,scrollbars=yes,status=yes'
+            );
         });
     }
 
-    function hideUploadModal() {
-        if (!uploadModal) return;
-        uploadModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    if (uploadBackdrop) {
-        uploadBackdrop.addEventListener('click', hideUploadModal);
-    }
-    if (closeUploadModal) {
-        closeUploadModal.addEventListener('click', hideUploadModal);
-    }
-
-    // Cerrar modales con ESC
+    // 4. Cerrar modales con tecla ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (modal && modal.style.display === 'block') {
-                closeModal();
-            }
-            if (uploadModal && uploadModal.style.display === 'block') {
-                hideUploadModal();
-            }
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+            closeModal();
         }
     });
 });
 
-// Detectar idioma del navegador
+// --- Lógica de IDIOMAS ---
 function detectLanguage() {
     const lang = navigator.language || navigator.userLanguage;
     if (lang.startsWith('es')) return 'es';
@@ -97,7 +82,6 @@ function detectLanguage() {
     return 'es';
 }
 
-// Cargar traducciones
 async function loadTranslations(lang) {
     try {
         const response = await fetch('languages.json');
@@ -110,7 +94,6 @@ async function loadTranslations(lang) {
     }
 }
 
-// Actualizar página
 function updatePage() {
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
@@ -127,23 +110,25 @@ function updatePage() {
     document.title = translations[currentLang]?.title || 'Guardians Of Dawns';
 }
 
-// Actualizar botones
 function updateButtons() {
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        const isLangBtn = !!btn.dataset.lang;
-        btn.classList.toggle('active', isLangBtn && btn.dataset.lang === currentLang);
+        // Solo aplicar "active" a botones que tengan data-lang (idiomas), no al upload
+        if (btn.dataset.lang) {
+            btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        }
     });
 }
 
-// Cambiar idioma
+// Eventos clic en botones de idioma
 document.querySelectorAll('.lang-btn').forEach(btn => {
-    if (!btn.dataset.lang) return; // saltar upload
-    btn.addEventListener('click', () => {
-        const newLang = btn.dataset.lang;
-        if (newLang !== currentLang) {
-            loadTranslations(newLang);
-        }
-    });
+    if (btn.dataset.lang) {
+        btn.addEventListener('click', () => {
+            const newLang = btn.dataset.lang;
+            if (newLang !== currentLang) {
+                loadTranslations(newLang);
+            }
+        });
+    }
 });
 
 // Inicializar
