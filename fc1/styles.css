@@ -163,7 +163,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* Botón Upload: hereda estilo base pero sin efecto hover amarillo */
+/* Estilo específico para el botón de Upload */
 .upload-btn {
     text-decoration: none;
     display: inline-flex;
@@ -171,14 +171,18 @@ footer {
     justify-content: center;
 }
 
-/* Hover/Active SOLO para idiomas (excluye upload) */
+/* 
+   REGLA CLAVE: 
+   El hover amarillo solo se aplica a los botones que NO sean upload-btn.
+   Los .lang-btn normales se ponen amarillos al pasar el ratón o si tienen la clase active.
+*/
 .lang-btn.active,
 .lang-btn:not(.upload-btn):hover { 
     background: #ffd700; 
     color: #000; 
 }
 
-/* Hover opcional suave para upload */
+/* Opcional: un efecto suave diferente para el botón de upload si quieres */
 .upload-btn:hover {
     background: rgba(255,255,255,0.3);
 }

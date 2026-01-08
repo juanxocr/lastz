@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title">Guardians Of Dawns</title>
+    <title data-translate="title">Guardians Of Dawn</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Barra superior: botón upload + idiomas -->
     <div class="lang-selector">
-        <!-- Botón Upload: se gestiona con JS para abrir popup -->
-        <a href="#" id="uploadBtn" class="lang-btn upload-btn" aria-label="Subir archivos a la alianza">
-            ⬆ Upload
+        <!-- OPCIÓN 1: Botón Upload abre NUEVA PESTAÑA (target="_blank") -->
+        <a href="https://mega.nz/filerequest/qBnfqTkXE3c"
+           target="_blank"
+           class="lang-btn upload-btn"
+           aria-label="Subir archivos a la alianza">
+            ⬆ 
         </a>
 
+        <!-- Botones de idioma -->
         <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
         <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
         <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
@@ -29,7 +33,7 @@
                 <img src="aliance.gif" alt="Guardians Of Dawn Logo">
             </video>
 
-            <h1 data-translate="header_title">🛡️ Guardians Of Dawns 🛡️</h1>
+            <h1 data-translate="header_title">🛡️ Guardians Of Dawn 🛡️</h1>
         </div>
         <p class="subtitle" data-translate="header_subtitle">La alianza dominante...</p>
     </header>
@@ -163,25 +167,6 @@
                         <div class="stat"><span class="stat-value">--K</span><span class="stat-label">Tropas</span></div>
                     </div>
                 </div>
-
-                <!-- Pille (Ejemplo extra) -->
-                <div class="card">
-                    <div class="video-container">
-                        <video poster="pille.png" controls preload="metadata" muted loop>
-                            <source src="pille.mp4" type="video/mp4">
-                            <img src="pille.png" alt="Video">
-                        </video>
-                    </div>
-                    <img src="pille.png" alt="" class="avatar">
-                    <div class="name">Pille</div>
-                    <div class="role">R4</div>
-                    <p class="desc">--</p>
-                    <div class="stats">
-                        <div class="stat"><span class="stat-value">HQ --</span><span class="stat-label">Poder</span></div>
-                        <div class="stat"><span class="stat-value">--M</span><span class="stat-label">Tropas</span></div>
-                    </div>
-                </div>
-
             </div>
         </section>
 

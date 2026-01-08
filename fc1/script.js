@@ -49,26 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Botón UPLOAD: Abre POPUP en lugar de iframe bloqueado
-    const uploadBtn = document.getElementById('uploadBtn');
-    if (uploadBtn) {
-        uploadBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita navegación estándar
-            // Abre una ventana flotante (popup)
-            window.open(
-                'https://mega.nz/filerequest#!qBnfqTkXE3c!l!es', 
-                'megaUploadWindow', 
-                'width=900,height=700,resizable=yes,scrollbars=yes,status=yes'
-            );
-        });
-    }
-
-    // 4. Cerrar modales con tecla ESC
+    // 3. Cerrar modales con tecla ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal && modal.style.display === 'block') {
             closeModal();
         }
     });
+
+    // NOTA: El botón Upload ya funciona solo con HTML (href + target="_blank")
+    // no requiere código JS extra aquí.
 });
 
 // --- Lógica de IDIOMAS ---
