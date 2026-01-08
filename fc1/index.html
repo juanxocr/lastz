@@ -17,10 +17,29 @@
 
     <header>
         <div class="header-logo-title">
-            <img src="aliance.gif" alt="Guardians Of Dawn Logo" class="logo">
+            <video class="logo" autoplay loop muted playsinline poster="aliance.gif">
+                <source src="aliance.mp4" type="video/mp4">
+                <!-- Fallback si no hay soporte de video -->
+                <img src="aliance.gif" alt="Guardians Of Dawn Logo">
+            </video>
+    
             <h1 data-translate="header_title">🛡️ Guardians Of Dawns 🛡️</h1>
-            <iframe width="250" height="54" frameborder="0" src="https://mega.nz/filerequest#!qBnfqTkXE3c!l!es"></iframe>
+    
+            <!-- Botón / icono de upload en MEGA -->
+            <a href="https://mega.nz/filerequest#!qBnfqTkXE3c!l!es" target="_blank" class="upload-btn" aria-label="Subir archivos a la alianza">
+                <!-- Opción 1: usar una imagen como icono -->
+                <!-- <img src="upload-icon.png" alt="Subir archivo"> -->
+    
+                <!-- Opción 2: icono SVG sencillo -->
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="11" stroke="#ffd700" stroke-width="2" />
+                    <path d="M12 6 L12 16" stroke="#ffd700" stroke-width="2" stroke-linecap="round" />
+                    <path d="M8 10 L12 6 L16 10" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect x="8" y="16" width="8" height="2" fill="#ffd700" />
+                </svg>
+            </a>
         </div>
+    
         <p class="subtitle" data-translate="header_subtitle">La alianza dominante...</p>
     </header>
     
